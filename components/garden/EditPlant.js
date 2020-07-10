@@ -6,6 +6,8 @@ import {
   StyleSheet,
   TextInput,
   ScrollView,
+  Button,
+  Picker,
   Alert,
   TouchableOpacity,
 } from 'react-native';
@@ -20,6 +22,7 @@ function EditPlant({ route, navigation }) {
   const [plantName, setPlantName] = useState(plant.plant_name);
   const [type, setType] = useState(plant.plant_type);
   const [variety, setVariety] = useState(plant.plant_variety);
+  const [plantHeight, setPlantHeight] = useState(snapshots[0].height);
   const [potHeight, setPotHeight] = useState(plant.pot_height);
   const [waterFreq, setWaterFreq] = useState(plant.watering_freq);
   const [soil, setSoil] = useState(plant.soil);
@@ -96,6 +99,7 @@ function EditPlant({ route, navigation }) {
             <View style={styles.container}>
               <Image
                 style={styles.image}
+                // onLoadEnd={() => isLoading(false)}
                 source={{
                   uri: plant_uri,
                 }}
@@ -138,9 +142,33 @@ function EditPlant({ route, navigation }) {
                   }}
                   style={{
                     ...pickerSelectStyles,
+                    iconContainer: {
+                      top: 20,
+                      right: 10,
+                    },
+                    placeholder: {
+                      color: 'white',
+                      fontSize: 18,
+                      fontWeight: '300',
+                    },
                   }}
                   Icon={() => {
-                    return <View style={styles.icon} />;
+                    return (
+                      <View
+                        style={{
+                          marginLeft: -70,
+                          backgroundColor: 'transparent',
+                          borderTopWidth: 10,
+                          borderTopColor: 'white',
+                          borderRightWidth: 10,
+                          borderRightColor: 'transparent',
+                          borderLeftWidth: 10,
+                          borderLeftColor: 'transparent',
+                          width: 0,
+                          height: 0,
+                        }}
+                      />
+                    );
                   }}
                   items={[
                     { label: 'garden', value: 'garden' },
@@ -201,9 +229,33 @@ function EditPlant({ route, navigation }) {
                   }}
                   style={{
                     ...pickerSelectStyles,
+                    iconContainer: {
+                      top: 20,
+                      right: 10,
+                    },
+                    placeholder: {
+                      color: 'white',
+                      fontSize: 18,
+                      fontWeight: '300',
+                    },
                   }}
                   Icon={() => {
-                    return <View style={styles.icon} />;
+                    return (
+                      <View
+                        style={{
+                          marginLeft: -70,
+                          backgroundColor: 'transparent',
+                          borderTopWidth: 10,
+                          borderTopColor: 'white',
+                          borderRightWidth: 10,
+                          borderRightColor: 'transparent',
+                          borderLeftWidth: 10,
+                          borderLeftColor: 'transparent',
+                          width: 0,
+                          height: 0,
+                        }}
+                      />
+                    );
                   }}
                   items={[
                     { label: 'indirect', value: 'indirect' },
@@ -221,15 +273,43 @@ function EditPlant({ route, navigation }) {
             </View>
             <View style={styles.input_container}>
               <RNPickerSelect
+                // style={pickerSelectStyles}
+                // useNativeAndroidPickerStyle={false}
                 onValueChange={(value) => setLocation(value)}
                 placeholder={{
                   label: 'select indoor or outdoor',
+                  // textAlign: 'centre',
                 }}
                 style={{
                   ...pickerSelectStyles,
+                  iconContainer: {
+                    top: 20,
+                    right: 10,
+                  },
+                  placeholder: {
+                    color: 'white',
+                    fontSize: 18,
+                    fontWeight: '300',
+                    // textAlign: 'center',
+                  },
                 }}
                 Icon={() => {
-                  return <View style={styles.icon} />;
+                  return (
+                    <View
+                      style={{
+                        marginLeft: -70,
+                        backgroundColor: 'transparent',
+                        borderTopWidth: 10,
+                        borderTopColor: 'white',
+                        borderRightWidth: 10,
+                        borderRightColor: 'transparent',
+                        borderLeftWidth: 10,
+                        borderLeftColor: 'transparent',
+                        width: 0,
+                        height: 0,
+                      }}
+                    />
+                  );
                 }}
                 items={[
                   { label: 'indoor', value: 'indoor' },
@@ -238,6 +318,7 @@ function EditPlant({ route, navigation }) {
                 value={location}
               />
             </View>
+            {/* </View> */}
 
             <View style={styles.input_section_2}>
               <View style={styles.input_text_container}>
@@ -293,18 +374,6 @@ function EditPlant({ route, navigation }) {
 export default EditPlant;
 
 const styles = StyleSheet.create({
-  icon: {
-    marginLeft: -70,
-    backgroundColor: 'transparent',
-    borderTopWidth: 10,
-    borderTopColor: 'white',
-    borderRightWidth: 10,
-    borderRightColor: 'transparent',
-    borderLeftWidth: 10,
-    borderLeftColor: 'transparent',
-    width: 0,
-    height: 0,
-  },
   container: {
     height: 400,
     shadowOffset: { width: 1, height: 3 },
@@ -327,23 +396,33 @@ const styles = StyleSheet.create({
     width: 450,
     height: 500,
   },
-
+  // header_text_container: {
+  //   height: 50,
+  //   // margin: 50,
+  // },
   titleText: {
+    // height: 30,
     marginTop: 10,
     marginBottom: 10,
     fontSize: 40,
     color: '#355a3a',
 
+    // lineHeight: 24,
     fontWeight: 'bold',
     textAlign: 'center',
     fontFamily: 'arciform',
   },
   subHeadingText: {
+    // textAlign: 'center',
+    // marginTop: 10,
     marginBottom: 20,
     fontSize: 18,
+    // lineHeight: 24,
     color: '#355a3a',
+    // width: '80%',
     paddingLeft: '5%',
     paddingRight: '5%',
+    fontWeight: 'bold',
     textAlign: 'center',
     fontFamily: 'arciform',
   },
@@ -351,11 +430,12 @@ const styles = StyleSheet.create({
     marginTop: 40,
   },
   input_container: {
+    // padding: '5%',
     alignItems: 'center',
-    // alignContent: 'center',
+    alignContent: 'center',
   },
   input_text_container: {
-    marginLeft: 40,
+    marginLeft: 51,
     marginBottom: 5,
   },
   input_text: {
@@ -370,7 +450,10 @@ const styles = StyleSheet.create({
     borderStyle: 'solid',
     padding: 10,
     borderRadius: 5,
+    // borderColor: 'green',
     backgroundColor: '#e6e6e6',
+    // borderWidth: 1,
+    // textDecorationLine: 'underline',
     width: '80%',
     height: 50,
   },
@@ -417,7 +500,10 @@ const pickerSelectStyles = StyleSheet.create({
     borderStyle: 'solid',
     padding: 11,
     borderRadius: 5,
+    // borderColor: 'green',
     backgroundColor: '#52875a',
+    // borderWidth: 1,
+    // textDecorationLine: 'underline',
     width: '80%',
     height: 50,
   },
@@ -429,17 +515,11 @@ const pickerSelectStyles = StyleSheet.create({
     borderStyle: 'solid',
     padding: 11,
     borderRadius: 5,
+    // borderColor: 'green',
     backgroundColor: '#52875a',
+    // borderWidth: 1,
+    // textDecorationLine: 'underline',
     width: '80%',
     height: 50,
-  },
-  iconContainer: {
-    top: 20,
-    right: 10,
-  },
-  placeholder: {
-    color: 'white',
-    fontSize: 18,
-    fontWeight: '300',
   },
 });

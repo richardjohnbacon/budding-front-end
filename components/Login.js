@@ -8,9 +8,12 @@ import {
   Alert,
   Dimensions,
   ScrollView,
+  Image,
 } from 'react-native';
 import * as api from '../api-requests/api';
 import * as Font from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
+import { Asset } from 'expo-asset';
 import LoadingGif from './LoadingGif';
 
 const Login = (props) => {
@@ -30,6 +33,8 @@ const Login = (props) => {
     Font.loadAsync({
       arciform: require('../assets/fonts/Arciform.otf'),
       helvetica: require('../assets/fonts/HelveticaNeueLTCom-Roman.ttf'),
+    }).then(() => {
+      // setLoading(false);
     });
   }, []);
 
@@ -48,6 +53,7 @@ const Login = (props) => {
       api
         .getUserByUsername(username)
         .then(({ user_id, username, name }) => {
+          //setLoading(false);
           props.logIn(user_id, username, name);
         })
         .catch((err) => {
@@ -76,6 +82,7 @@ const Login = (props) => {
           return api.getUserByUsername(username);
         })
         .then((user) => {
+          //setLoading(false);
           const { user_id, username, name } = user;
           props.logIn(user_id, username, name);
         })
@@ -88,7 +95,7 @@ const Login = (props) => {
   };
 
   // displays login and sign up option
-  // when sign up button pressed, displays input boxes requiring username and name and a submit button, which then posts the new user info to API and immediately uses this info to log them in, taking them to garden page
+  // when sign up button pressed, displays input boxes and a submit button, which then posts the new user info and immediately logs them in, taking them to garden page
 
   if (loading) return <LoadingGif />;
   else
@@ -202,6 +209,8 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     paddingVertical: 7,
     marginBottom: 10,
+    // width: '65%',
+    // paddingHorizontal: 80,
   },
   button_afterLogin: {
     backgroundColor: '#fdbe39',
@@ -210,6 +219,8 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     paddingVertical: 7,
     marginBottom: 10,
+    // width: '65%',
+    // paddingHorizontal: 80,
   },
   input: {
     fontFamily: 'helvetica',
