@@ -17,7 +17,7 @@
     "@react-navigation/stack": "^5.5.1",
     "@svgr/core": "^5.4.0",
     "anonymous-files": "^1.0.1",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "expo": "^37.0.0",
     "expo-font": "~8.1.0",
     "expo-image-manipulator": "~8.1.0",
